@@ -1,7 +1,8 @@
 const URL = require('url')
 const flat = require('flat')
 const {get: getProp} = require('lodash')
-const cheerio = require('cheerio')
+const cheerio = require('react-native-cheerio')
+
 
 async function lookup (query, locale = 'en') {
   // Example query
