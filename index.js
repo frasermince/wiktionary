@@ -1,4 +1,3 @@
-const get = require('got')
 const URL = require('url')
 const flat = require('flat')
 const {get: getProp} = require('lodash')
@@ -21,7 +20,15 @@ async function lookup (query, locale = 'en') {
     }
   })
 
-  const {body} = await get(url, {json: true})
+  const {body} = await fetch(url, 
+    {
+      method: "GET",
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }
+  )
   const key = Object.keys(flat(body)).find(key => key.endsWith('.extract'))
   if (!key) return null // 404 word not found
   const html = getProp(body, key)
